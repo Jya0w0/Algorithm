@@ -1,0 +1,12 @@
+string[] s = Console.ReadLine().Split();
+int A = int.Parse(s[0]);
+int B = int.Parse(s[1]);
+int C = int.Parse(s[2]);
+int a = (A + B) % C;
+int b = ((A % C) + (B % C)) % C;
+int c = (A * B)% C;
+int d = ((A % C) * (B % C))% C;
+Console.WriteLine(a);
+Console.WriteLine(b);
+Console.WriteLine(c);
+Console.WriteLine(d);
