@@ -1,23 +1,26 @@
 int count = int.Parse(Console.ReadLine());
 
 string[] s = Console.ReadLine().Split();
-float[] scores = new float[s.Length];
+double[] scores = new double[s.Length];
 
-float max = 0;
-float average = 0f;
+double max = 0d;
+double average = 0d;
 
-for (int i = 0; i < s.Length; i++)
+for (int i = 0; i < count; i++)
 {
     scores[i] = int.Parse(s[i]);
     if (scores[i] > max)
     {
         max = scores[i];
     }
+    scores[i] = scores[i] * 100;
+    average += scores[i];
+
 }
 
-for (int i = 0; i < count; i++)
-{
-    scores[i] = scores[i] / max * 100;
-    average += scores[i] / count;
-}
-Console.WriteLine(average);
+//for (int i = 0; i < count; i++)
+//{
+//    scores[i] = scores[i] / max * 100;
+//    average += scores[i] / count;
+//}
+Console.WriteLine(average / max / count);
