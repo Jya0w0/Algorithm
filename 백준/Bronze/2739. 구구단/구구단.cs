@@ -1,6 +1,6 @@
 int n = int.Parse(Console.ReadLine());
-
-for (int i = 1; i <= 9; i++)
+int i = 0;
+while(i++ < 9)
 {
     int answer = n * i;
     Console.WriteLine(n + " * " + i + " = " + answer);
