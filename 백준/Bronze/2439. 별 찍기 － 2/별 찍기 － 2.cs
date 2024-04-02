@@ -1,13 +1,9 @@
 int n = int.Parse(Console.ReadLine());
-for(int k = 0; k < n; k++)
+for(int j = 0; j < n; j++)
 {
-    for (int i = 0; i < n - k - 1; i++)
+    for (int i = 0; i < n; i++)
     {
-        Console.Write(" ");
-    }
-    for (int j = 0; j <= k; j++)
-    {
-        Console.Write("*");
+        Console.Write(i < n - j - 1 ? " " : "*");
     }
     Console.WriteLine();
 }
