@@ -1,11 +1,24 @@
-int n = int.Parse(Console.ReadLine());
-char a = ' ';
-char b = '*';
-for(int j = 0; j < n; j++)
+using System;
+using System.Text;
+
+namespace CodingTest
 {
-    for (int i = 0; i < n; i++)
+    internal class Program
     {
-        Console.Write(i < n - j - 1 ? a : b);
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            StringBuilder s = new StringBuilder();
+
+            for(int j = 0; j < n; j++)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    s.Append(i < n - j - 1 ? " " : "*");
+                }
+                s.Append("\n");
+            }
+            Console.WriteLine(s);
+        }
     }
-    Console.WriteLine();
 }
