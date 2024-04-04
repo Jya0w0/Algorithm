@@ -3,10 +3,7 @@ int count = 0;
 
 for (int i = 0; i < s.Length; i++)
 {
-    if (s[i] == "")
-    {
-        count++;
-    }
+    count += s[i] == "" ? 0 : 1;
 }
 
-Console.WriteLine(s.Length - count);
+Console.WriteLine(count);
