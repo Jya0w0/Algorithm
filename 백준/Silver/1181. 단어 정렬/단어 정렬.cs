@@ -1,29 +1,36 @@
-int n = int.Parse(Console.ReadLine());
-string[] s = new string[n];
+using System;
+using System.Collections.Generic;
 
-for(int i = 0; i < n; i++)
+class Program
 {
-    s[i] = Console.ReadLine();
-}
-Array.Sort(s, (a, b) => {
-    if (a.Length < b.Length)
-        return -1;
-    else if (a.Length > b.Length)
-        return 1;
-    else //a.Length == b.Length
-        return string.Compare(a, b);
-});
-
-Dictionary<string, int> words = new Dictionary<string, int> ();
-foreach(string word in s)
-{
-    if (!words.ContainsKey(word))
+    static void Main()
     {
-        Console.WriteLine(word);
-        words.Add(word, 1);
+        int n = int.Parse(Console.ReadLine());
+        string[] s = new string[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            s[i] = Console.ReadLine();
+        }
+
+        SortedSet<string> sortedSet = new SortedSet<string>(s, new StringComparer());
+
+        foreach (var str in sortedSet)
+        {
+            Console.WriteLine(str);
+        }
     }
-    else
+
+    public class StringComparer : IComparer<string>
     {
-        continue;
+        public int Compare(string a, string b)
+        {
+            if (a.Length < b.Length)
+                return -1;
+            else if (a.Length > b.Length)
+                return 1;
+            else
+                return string.Compare(a, b);
+        }
     }
 }
