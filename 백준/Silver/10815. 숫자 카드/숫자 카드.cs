@@ -45,9 +45,9 @@ namespace CodingTest
                         high = mid - 1;
                     }
                 }
-                sb.Append(isSame ? "1\n" : "0\n");
+                sb.Append(isSame ? "1 " : "0 ");
             }
-            Console.WriteLine(sb);
+            Console.WriteLine(sb.ToString().TrimEnd());
         }
     }
 }
