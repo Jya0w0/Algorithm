@@ -16,7 +16,16 @@ namespace CodingTest
                 string[] s = Console.ReadLine().Split();
                 nums[i] = (int.Parse(s[0]), int.Parse(s[1]));
             }
-            nums = nums.OrderBy(a => a.y).ThenBy(a => a.x).ToArray();
+            Array.Sort(nums, (a, b) => {
+                if (a.y == b.y)
+                {
+                    return a.x.CompareTo(b.x);
+                }
+                else
+                {
+                    return a.y.CompareTo(b.y);
+                }
+            });
 
             for (int j = 0; j < nums.Length; j++)
             {
