@@ -8,19 +8,15 @@ for (int i = 0; i < n; i++)
     coins[i] = int.Parse(Console.ReadLine());
 }
 
-int sum = 0;
 int count = 0;
 
 for (int i = n - 1; i >= 0; i--)
 {
-    if (sum + coins[i] <= k)
+    if (k / coins[i] != 0)
     {
-        while (sum < k)
-        {
-            if (sum + coins[i] > k) break;
-            sum += coins[i];
-            count++;
-        }
+        int a = k / coins[i];
+        count += a;
+        k -= a * coins[i];
     }
 }
 
