@@ -1,81 +1,70 @@
 using System;
-using System.Collections.Generic;
-namespace _1
+
+namespace CodingTest
 {
-    class Program
+    internal class Program
     {
-        static int[] input;
+        static string[] s = Console.ReadLine().Split();
+        static int n = int.Parse(s[0]);
+        static int m = int.Parse(s[1]);
+        static int v = int.Parse(s[2]);
+        static int[] visitedDFS = new int[n + 1];
+        static int[] visitedBFS = new int[n + 1];
+        static List<int>[] nearNode = new List<int>[n + 1];
 
-        static int N;
-        static int M;
-        static int V;
-
-        static public int[,] map = new int[1001, 1001];
-        static public bool[] visited = new bool[1001];
-
-        static public Queue<int> queue = new Queue<int>();
-        static public Stack<int> stack = new Stack<int>();
-
-        static void Reset()
+        static void DFS(int node)
         {
-            for (int i = 1; i <= N; i++)
-            {
-                visited[i] = false;
-            }
-        }
-        static void DFS(int V)
-        {
-            visited[V] = true;
+            if (visitedDFS[node] == 1) return;
+            visitedDFS[node] = 1;
+            Console.Write(node + " ");
 
-            Console.Write(V + " ");
-            for (int i = 1; i <= N; i++)
+            for (int i = 0; i < nearNode[node].Count; i++)
             {
-                if (map[V, i] == 1 && visited[i] == false)
-                {
-                    DFS(i);
-                }
-            }           
-        }
-        static void BFS(int V)
-        {
-            queue.Enqueue(V);
-            visited[V] = true;
-                        
-            int start = V;
-            while (queue.Count != 0)
-            {
-                //큐에서 나오는 값을 시작변수로 계속 바꿔줘야함
-                start = queue.Dequeue();
-                Console.Write(start + " ");
-                for (int i = 1; i <= N; i++)
-                {
-                    if(map[start, i] == 1 && visited[i] == false)
-                    {
-                        queue.Enqueue(i);
-                        visited[i] = true;
-                    }
-                }
+                int x = nearNode[node][i];
+                DFS(x);
             }
         }
         static void Main(string[] args)
         {
-            input = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
-            N = input[0];
-            M = input[1];
-            V = input[2];
-
-            for (int i = 0; i < M; i++)
+            Queue<int> bfs = new Queue<int>();
+            for (int i = 0; i < nearNode.Length; i++)
             {
-                int[] mArray = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
-                map[mArray[0], mArray[1]] = 1;
-                map[mArray[1], mArray[0]] = 1;
+                nearNode[i] = new List<int>();
             }
 
-            Reset();
-            DFS(V);
+            for (int i = 0; i < m; i++)
+            {
+                string[] ss = Console.ReadLine().Split();
+                int a = int.Parse(ss[0]);
+                int b = int.Parse(ss[1]);
+                nearNode[a].Add(b);
+                nearNode[b].Add(a);
+            }
+
+            for (int i = 0; i < nearNode.Length; i++)
+            {
+                nearNode[i].Sort();
+            }
+
+            DFS(v);
             Console.WriteLine();
-            Reset();
-            BFS(V);
+            bfs.Enqueue(v);
+            visitedBFS[v] = 1;
+            while (bfs.Count != 0)
+            {
+                int node = bfs.Dequeue();
+                Console.Write(node + " ");
+
+                for (int i = 0; i < nearNode[node].Count; i++)
+                {
+                    int x = nearNode[node][i];
+                    if (visitedBFS[x] != 1)
+                    {
+                        bfs.Enqueue(x);
+                        visitedBFS[x] = 1;
+                    }
+                }
+            }
         }
     }
 }
