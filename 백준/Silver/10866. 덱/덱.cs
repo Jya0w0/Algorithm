@@ -10,7 +10,7 @@ namespace CodingTest
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
-            LinkedList<int> list = new LinkedList<int>();
+            LinkedList<int> l = new LinkedList<int>();
             StringBuilder sb = new StringBuilder();
 
             for (int i = 0; i < n; i++)
@@ -18,51 +18,37 @@ namespace CodingTest
                 string[] input = Console.ReadLine().Split();
                 if (input[0] == "push_front")
                 {
-                    list.AddFirst(int.Parse(input[1]));
+                    l.AddFirst(int.Parse(input[1]));
                 }
                 else if (input[0] == "push_back")
                 {
-                    list.AddLast(int.Parse(input[1]));
+                    l.AddLast(int.Parse(input[1]));
                 }
                 else if (input[0] == "pop_front")
                 {
-                    if (list.Count > 0)
-                    {
-                        sb.Append(list.First.Value + "\n");
-                        list.RemoveFirst();
-                    }
-                    else
-                    {
-                        sb.Append(-1 + "\n");
-                    }
+                    sb.AppendLine($"{(l.Count > 0 ? l.First.Value : -1)}");
+                    if (l.Count != 0) l.RemoveFirst();
                 }
                 else if (input[0] == "pop_back")
                 {
-                    if (list.Count > 0)
-                    {
-                        sb.Append(list.Last.Value + "\n");
-                        list.RemoveLast();
-                    }
-                    else
-                    {
-                        sb.Append(-1 + "\n");
-                    }
+                    sb.AppendLine($"{(l.Count > 0 ? l.Last.Value : -1)}");
+                    if (l.Count != 0) l.RemoveLast();
                 }
                 else if (input[0] == "size")
                 {
-                    sb.Append(list.Count + "\n");
+                    sb.AppendLine($"{l.Count}");
                 }
                 else if (input[0] == "empty")
                 {
-                    sb.Append(list.Count == 0 ? 1 + "\n" : 0 + "\n");
+                    sb.AppendLine($"{(l.Count == 0 ? 1 : 0)}");
                 }
                 else if (input[0] == "front")
                 {
-                    sb.Append(list.Count > 0 ? list.First.Value + "\n" : -1 + "\n");
+                    sb.AppendLine($"{(l.Count > 0 ? l.First.Value : -1)}");
                 }
                 else if (input[0] == "back")
                 {
-                    sb.Append(list.Count > 0 ? list.Last.Value + "\n" : -1 + "\n");
+                    sb.AppendLine($"{(l.Count > 0 ? l.Last.Value : -1)}");
                 }
             }
             Console.WriteLine(sb.ToString());
