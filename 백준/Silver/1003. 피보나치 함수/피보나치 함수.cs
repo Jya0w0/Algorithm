@@ -13,7 +13,7 @@ namespace CodingTest
             for (int i = 0; i < t; i++)
             {
                 int n = int.Parse(Console.ReadLine());
-                int[,] fibonacci = new int [41, 2];
+                int[,] fibonacci = new int [n + 2, 2];
                 fibonacci[0, 0] = 1;
                 fibonacci[1, 1] = 1;
                 for (int j = 2; j <= n; j++)
