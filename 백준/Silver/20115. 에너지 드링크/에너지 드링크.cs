@@ -1,16 +1,15 @@
-long n = int.Parse(Console.ReadLine());
+int n = int.Parse(Console.ReadLine());
 string[] s = Console.ReadLine().Split();
-long[] x = new long[n];
+int[] x = new int[n];
 
-for (long i = 0; i < n; i++)
+for (int i = 0; i < n; i++)
 {
-    x[i] = long.Parse(s[i]);
+    x[i] = int.Parse(s[i]);
 }
 Array.Sort(x);
-Array.Reverse(x);
 
-double max = x[0];
-for (long i = 1; i < n; i++)
+double max = x[n - 1];
+for (int i = n - 2; i >= 0; i--)
 {
     max += (double)x[i] / 2;
 }
