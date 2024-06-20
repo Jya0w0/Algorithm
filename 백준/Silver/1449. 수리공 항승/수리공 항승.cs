@@ -8,24 +8,14 @@ for (int i = 0; i < n; i++)
     point[i] = int.Parse(ss[i]);
 }
 Array.Sort(point);
-Queue<int> q = new Queue<int>();
-for(int i  = 0; i < point.Length; i++)
-{
-    q.Enqueue(point[i]);
-}
-
+float fix = point[0] - 0.5f;
 int count = 0;
-int a = q.Dequeue();
-while (q.Count > 0)
+for (int i = 0; i < n; i++)
 {
-    if (q.Peek() - a < l)
+    if ((float)(fix + l) < point[i])
     {
-        q.Dequeue();
-    }
-    else
-    {
+        fix = point[i] - 0.5f;
         count++;
-        a = q.Dequeue();
     }
 }
 Console.WriteLine(count + 1);
