@@ -1,19 +1,20 @@
-ulong n = ulong.Parse(Console.ReadLine());
-long left = 0;
-long right = (long)Math.Sqrt(n) + 1;
-ulong q = 0;
-while (left <= right)
-{
+long a = long.Parse(Console.ReadLine());
+Console.Write(BS(a));
 
-    ulong mid = (ulong)((left + right) / 2);
-    if (mid * mid >= n)
+long BS(long n)
+{
+    long result = 0, s = 0, e = n, m;
+
+    while (s <= e)
     {
-        q = mid;
-        right = (long)(mid - 1);
+        m = (s + e) / 2;
+        if (n <= Math.Pow(m, 2))
+        {
+            result = m;
+            e = m - 1;
+        }
+        else s = m + 1;
     }
-    else
-    {
-        left = (long)(mid + 1);
-    }
+
+    return result;
 }
-Console.WriteLine(q);
