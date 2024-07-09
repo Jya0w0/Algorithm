@@ -18,12 +18,12 @@ namespace CodingTest
                 num[i] = i - 1;
                 if (i % 3 == 0 && count[i] > count[i / 3] + 1)
                 {
-                    count[i] = Math.Min(count[i], count[i / 3] + 1);
+                    count[i] = count[i / 3] + 1;
                     num[i] = i / 3;
                 }
                 if (i % 2 == 0 && count[i] > count[i / 2] + 1)
                 {
-                    count[i] = Math.Min(count[i], count[i / 2] + 1);
+                    count[i] = count[i / 2] + 1;
                     num[i] = i / 2;
                 }
             }
