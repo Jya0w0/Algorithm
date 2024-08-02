@@ -23,13 +23,7 @@ namespace CodingTest
                 if (one < minOnePrice) minOnePrice = one;
             }
 
-            int minPrice = 0;
-            if (n >= 6)
-            {
-                if (n % 6 == 0) minPrice = Math.Min((n / 6) * minSetPrice, Math.Min(n * minOnePrice, (n / 6) * minSetPrice + (n % 6) * minOnePrice));
-                else minPrice = Math.Min((n / 6 + 1) * minSetPrice, Math.Min(n * minOnePrice, (n / 6) * minSetPrice + (n % 6) * minOnePrice));
-            }
-            else minPrice = Math.Min(n * minOnePrice, minSetPrice);
+            int minPrice = minPrice = Math.Min(minSetPrice * (n / 6) + Math.Min(minSetPrice, minOnePrice * (n % 6)), minOnePrice * n);
             Console.WriteLine(minPrice);
         }
     }
