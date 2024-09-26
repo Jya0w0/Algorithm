@@ -9,7 +9,7 @@ using namespace std;
 bool isPrime(int n) {
     if (n <= 1) return false;
 
-    for (int i = 2; i * i <= n; i++)
+    for (int i = 2; i <= sqrt(n); i++)
     {
         if (n % i == 0) return false;
     }
@@ -26,7 +26,6 @@ int solution(string numbers) {
         for (int i = 1; i <= numbers.size(); ++i) 
         {
             string str = numbers.substr(0, i);
-            if (str[0] == '0' && str.size() > 1) continue;
             int num = stoi(str);
             if (isPrime(num)) nums.insert(num);
         }
