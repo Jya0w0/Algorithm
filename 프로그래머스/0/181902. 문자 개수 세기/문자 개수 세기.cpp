@@ -4,11 +4,7 @@
 using namespace std;
 
 vector<int> solution(string my_string) {
-    vector<int> answer;
-    for (int i = 0; i < 52; i++)
-    {
-        answer.push_back(0);
-    }
+    vector<int> answer(52);
     for (char str : my_string)
     {
         if (str >= 'A' && str <= 'Z') answer[str - 'A']++;
