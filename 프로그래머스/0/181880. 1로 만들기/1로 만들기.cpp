@@ -10,8 +10,7 @@ int solution(vector<int> num_list) {
         while (num != 1)
         {
             answer++;
-            if (num % 2 == 0) num /= 2;
-            else num = (num - 1) / 2;
+            num /= 2;
         }
     }
     return answer;
