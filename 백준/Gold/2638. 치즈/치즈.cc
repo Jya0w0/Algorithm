@@ -26,6 +26,38 @@ void dfs(int x, int y) {
     }
 }
 
+bool meltchees() {
+    bool melt = false;
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (map[i][j] == 1)
+            {
+                int count = 0;
+                for (int k = 0; k < 4; k++)
+                {
+                    int nx = i + dx[k];
+                    int ny = j + dy[k];
+                    if (map[nx][ny] == -1)
+                    {
+                        count++;
+                    }
+                }
+
+                if (count >= 2)
+                {
+                    q.push(make_pair(i, j));
+                    melt = true;
+                }
+            }
+        }
+    }
+
+    return melt;
+}
+
 int main(void) {
     cin >> n >> m;
     int answer = 0;
@@ -65,34 +97,7 @@ int main(void) {
 
     while (true) 
     {
-        bool melt = false;
-
-        for (int i = 0; i < n; i++) 
-        {
-            for (int j = 0; j < m; j++) 
-            {
-                if (map[i][j] == 1) 
-                {
-                    int count = 0;
-                    for (int k = 0; k < 4; k++)
-                    {
-                        int nx = i + dx[k];
-                        int ny = j + dy[k];
-                        if (map[nx][ny] == -1)
-                        {
-                            count++;
-                        }
-                    }
-
-                    if (count >= 2) 
-                    {
-                        q.push(make_pair(i, j));
-                        melt = true;
-                    }
-                }
-            }
-        }
-
+        bool melt = meltchees();
         if (!melt) 
         {
             break;
